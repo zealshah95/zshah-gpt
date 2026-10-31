@@ -24,8 +24,11 @@ class Solution:
 
         dout_dhpreact = out * (1-out)
         dL_dhpreact = dL_dout * dout_dhpreact
-        
-        dL_dw = dL_dhpreact * x
-        dL_db = dL_dhpreact
+
+        dhpreact_dw = x
+        dL_dw = dL_dhpreact * dhpreact_dw
+
+        dhpreact_db = 1
+        dL_db = dL_dhpreact * dhpreact_db
 
         return (np.round(dL_dw, 5), np.round(dL_db, 5))
