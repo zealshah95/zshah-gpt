@@ -20,7 +20,12 @@ class Solution:
         # return round(your_answer, 4)
         
         y_pred = y_pred.clip(1e-7, 1 - 1e-7)
+        # solution 1: [not great]
         # for each sample, obtain y_pred where y_true is 1 i.e.
         # for each sample, obtain prediction probability of the correct class
-        loss = -1.0 * np.mean(np.log(y_pred[np.where(y_true == 1)]))
+        # loss = -1.0 * np.mean(np.log(y_pred[np.where(y_true == 1)]))
+
+        # solution 2: [straightforward]
+        loss = -1.0 * np.mean(np.sum(y_true * np.log(y_pred), axis=1))
+        
         return round(loss, 4)
